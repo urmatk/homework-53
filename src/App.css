@@ -1,13 +1,13 @@
-/*.App {*/
-/*  text-align: center;*/
-/*}*/
-
+body {
+  background: lightslategray;
+}
 .blok {
   text-align: center;
   border: 1px solid #F04716;
   width: 700px;
   height: auto;
   margin: 30px auto;
+  background: coral;
 }
 
 .addText {
@@ -15,18 +15,12 @@
 }
 
 .blok-Task {
-  width: 600px;
-  max-height: 100%;
-  border: 1px solid chartreuse;
-  margin: 20px auto;
-}
-
-.Task {
   display: flex;
   justify-content: space-between;
   width: 500px;
-  border: 1px solid blue;
+  border-radius: 10px;
   margin: 10px auto;
   align-items: center;
   padding: 5px;
+  background: antiquewhite;
 }

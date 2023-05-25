@@ -4,6 +4,7 @@ import AddTaskForm from "./AddTaskForm/AddTaskForm";
 import Task from "./Task/Task";
 import {nanoid} from "nanoid";
 
+
 function App() {
   const [newTask, setText] = useState([
       {text: 'work', key: nanoid()},
@@ -21,7 +22,6 @@ function App() {
 
   const [textCreation, settextCreation] = useState('');
   const currentTask= (event: React.ChangeEvent<HTMLInputElement>) => {
-
       settextCreation(event.target.value);
   }
 
@@ -58,9 +58,7 @@ function App() {
                   onRemoveTask={() => removeTask(person.key)}
                   />
           })}
-
       </div>
-
     </div>
 
   );

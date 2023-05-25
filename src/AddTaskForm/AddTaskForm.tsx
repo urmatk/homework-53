@@ -8,7 +8,7 @@ interface IAddTaskFormProps extends React.PropsWithChildren {
 const AddTaskForm: React.FC<IAddTaskFormProps> = props => {
     return (
         <div className="addText">
-            <input type="text" onChange={props.currentTasks}/>
+            <input type="text" onChange={props.currentTasks} />
             <button className="btn" onClick={props.onAddClick}>Add</button>
         </div>
     );
