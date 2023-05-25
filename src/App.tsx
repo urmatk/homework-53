@@ -2,14 +2,22 @@ import React, {useState} from 'react';
 import './App.css';
 import AddTaskForm from "./AddTaskForm/AddTaskForm";
 import Task from "./Task/Task";
+import {nanoid} from "nanoid";
 
 function App() {
   const [newTask, setText] = useState([
-      {text: 'work', key: 1123},
-      {text: 'shopping', key: 15154},
-      {text: 'car', key: 445454},
-      {text: 'fly', key: 15217417},
+      {text: 'work', key: nanoid()},
+      {text: 'shopping', key: nanoid()},
+      {text: 'car', key: nanoid()},
+      {text: 'fly', key: nanoid()},
   ]);
+
+    const removeTask = (key: string) => {
+        const newTaskCopy = [...newTask];
+        const index = newTask.findIndex(Task => Task.key === key);
+        newTaskCopy.splice(index, 1);
+        setText(newTaskCopy);
+    };
 
   const [textCreation, settextCreation] = useState('');
   const currentTask= (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,12 +28,17 @@ function App() {
   const addTask = () => {
     const task =  {
         text: textCreation,
-        key: 585985,
+        key: nanoid(),
     }
 
     const newTaskCopy = [...newTask];
-    newTaskCopy.push(task);
-    setText(newTaskCopy);
+    if(task.text.length > 0) {
+        newTaskCopy.push(task);
+        setText(newTaskCopy);
+    } else {
+        alert('Введите задачу')
+    }
+
   }
 
 
@@ -35,12 +48,14 @@ function App() {
           <AddTaskForm
               currentTasks = {event => currentTask(event)}
               onAddClick = {() => addTask()}
+
           />
 
           {newTask.map((person) => {
               return <Task
                   text={person.text}
                   key={person.key}
+                  onRemoveTask={() => removeTask(person.key)}
                   />
           })}
 
