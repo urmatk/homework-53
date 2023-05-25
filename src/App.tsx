@@ -1,25 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import AddTaskForm from "./AddTaskForm/AddTaskForm";
+import Task from "./Task/Task";
 
 function App() {
+  const [newTask, setText] = useState([
+      {text: 'work', key: 1123},
+      {text: 'shopping', key: 15154},
+      {text: 'car', key: 445454},
+      {text: 'fly', key: 15217417},
+  ]);
+
+  const [textCreation, settextCreation] = useState('');
+  const currentTask= (event: React.ChangeEvent<HTMLInputElement>) => {
+
+      settextCreation(event.target.value);
+  }
+
+  const addTask = () => {
+    const task =  {
+        text: textCreation,
+        key: 585985,
+    }
+
+    const newTaskCopy = [...newTask];
+    newTaskCopy.push(task);
+    setText(newTaskCopy);
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="blok">
+          <AddTaskForm
+              currentTasks = {event => currentTask(event)}
+              onAddClick = {() => addTask()}
+          />
+
+          {newTask.map((person) => {
+              return <Task
+                  text={person.text}
+                  key={person.key}
+                  />
+          })}
+
+      </div>
+
     </div>
+
   );
 }
 
